@@ -32,11 +32,12 @@ for x in tickers:
 worst = returns.idxmin()
 best = returns.idxmax()
 sns.set_style('whitegrid')
-#sns.distplot(returns.ix['2015-01-01':'2015-12-31']['BAC'], bins=30)
+sns.distplot(returns.ix['2015-01-01':'2015-12-31']['BAC'], bins=30)
+plt.show()
 
-
-#bank_stocks.xs('Close', level=1, axis=1).plot(figsize=(12, 4))
-#plt.legend()
+bank_stocks.xs('Close', level=1, axis=1).plot(figsize=(12, 4))
+plt.legend()
+plt.show()
 
 sns.clustermap(bank_stocks.xs('Close', axis=1, level=1).corr(), annot=True)
 plt.show()

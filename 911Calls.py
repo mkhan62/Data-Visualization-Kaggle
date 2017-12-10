@@ -42,11 +42,13 @@ df['Date'] = df['timeStamp'].apply(lambda x: x.date())
 # sns.countplot(df['Month'], hue=df['Reason'], palette='coolwarm')
 
 byMonth = df[df['Reason'] == 'EMS'].groupby('Month').count()
-# sns.lmplot(x='Month', y='twp', data=byMonth.reset_index())
+sns.lmplot(x='Month', y='twp', data=byMonth.reset_index())
+plt.show()
 byDate = df.groupby('Date').count().reset_index()
 
-# byDate.plot.line(x='Date', y='lat')
-# plt.tight_layout()
+byDate.plot.line(x='Date', y='lat')
+plt.tight_layout()
+plt.show()
 
 heatMapFrame1 = df.groupby(['Day of Week', 'Hour']).count()['lat'].unstack(level=-1)
 heatMapFrame2 = df.groupby(['Day of Week', 'Month']).count()['lat'].unstack(level=-1)
@@ -54,3 +56,6 @@ sns.clustermap(heatMapFrame2, linewidths=1, linecolor='white', cmap='Blues')
 plt.tight_layout()
 plt.show()
 
+sns.clustermap(heatMapFrame1, linewidths=1, linecolor='white', cmap='Blues')
+plt.tight_layout()
+plt.show()
